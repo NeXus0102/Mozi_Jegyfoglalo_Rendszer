@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -32,15 +33,20 @@ namespace mozijegyfoglalo
     public partial class MainWindow : Window
     {
         public List<Mozi> MoziFilmek = new List<Mozi>();
+        private ICollectionView moziView; 
         public MainWindow()
         {
             InitializeComponent();
+            
+            moziView = CollectionViewSource.GetDefaultView(MoziFilmek);
+            datagrid.ItemsSource = moziView;
+
             MoziFilmek.Add(
-                new Mozi("Gyűrűk Ura", new DateTime(2025, 12, 15, 19, 30, 0), "1-es terem", 12, true));
+                new Mozi("Gyűrűk Ura", new DateTime(2025, 12, 15, 19, 30, 0), "1-es terem", 12, false));
             MoziFilmek.Add(
                 new Mozi("Venom", new DateTime(2025, 12, 15, 20, 25, 0), "2-es terem", 10, true));
             MoziFilmek.Add(
-                new Mozi("Up", new DateTime(2025, 12, 15, 14, 0, 0), "4-es terem", 20, true));
+                new Mozi("Up", new DateTime(2025, 12, 15, 14, 0, 0), "4-es terem", 20, false));
             MoziFilmek.Add(
                 new Mozi("Step Up", new DateTime(2025, 12, 15, 19, 50, 0), "3-es terem", 8, true));
             MoziFilmek.Add(
@@ -74,6 +80,12 @@ namespace mozijegyfoglalo
             }
             datagrid.ItemsSource=csakaholhelyvan1;
             datagrid.Items.Refresh();
+        }
+
+        private void legnepszerubb(object sender, RoutedEventArgs e)
+        {
+            var legnepszerubbFilmek = MoziFilmek.Where(m => m.szabadhelyek == 0).ToList();
+            datagrid.ItemsSource = legnepszerubbFilmek;
         }
     }
 }

@@ -19,6 +19,9 @@
             <Button Content="Adatok betöltése" Width="120" Click="adatokbetoltese"/>
             <Button Content="Foglalás" Width="120" Click="foglalas"/>
             <Button Content="Csak ahol van hely" Width="120" Click="csakaholvanhely"/>
+            <Button Content="Legnépszerűbb" Width="120" Click="legnepszerubb"/>
+            <Button Content="Átlagos szabad helyek" Width="120" Click="atlagosszabadhely"/>
+            <Button Content="Csak 3D-s filmek" Width="120" Click="csak3d"/>
         </StackPanel>
     </Grid>
 </Window>
