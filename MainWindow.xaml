@@ -23,5 +23,49 @@
             <Button Content="Átlagos szabad helyek" Width="120" Click="atlagosszabadhely"/>
             <Button Content="Csak 3D-s filmek" Width="120" Click="csak3d"/>
         </StackPanel>
+        <GroupBox Grid.Row="4" Header="Új előadás hozzáadása" Margin="0,5,0,0">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Film címe:" Margin="0,0,5,0"
+                           VerticalAlignment="Center"/>
+                <TextBox x:Name="txtFilmCim" Grid.Row="0" Grid.Column="1" Margin="0,0,15,3"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Időpont:" Margin="0,0,5,0"
+                           VerticalAlignment="Center"/>
+
+                <TextBox x:Name="txtIdopont" Grid.Row="0" Grid.Column="4" Margin="0,0,0,3"
+                         ToolTip="Formátum pl.: 2025.12.15 10:30"/>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Terem:" Margin="0,0,5,0"
+                           VerticalAlignment="Center"/>
+                <TextBox x:Name="txtTerem" Grid.Row="1" Grid.Column="1" Margin="0,0,15,3"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="Szabad helyek:" Margin="0,0,5,0"
+                           VerticalAlignment="Center"/>
+                <TextBox x:Name="txtSzabadHely" Grid.Row="1" Grid.Column="4" Margin="0,0,0,3"/>
+
+                <CheckBox x:Name="chk3D" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="3D-s vetítés" Margin="0,5,0,0"/>
+
+                <StackPanel Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                    <Button Content="Hozzáadás" Width="90" Margin="0,0,8,0" Click="hozzaadas"/>
+                    <Button Content="Keresés" Width="90" Click="kereses"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

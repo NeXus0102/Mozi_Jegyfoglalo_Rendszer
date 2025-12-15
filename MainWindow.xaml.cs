@@ -125,5 +125,38 @@ namespace mozijegyfoglalo
             datagrid.ItemsSource = harminddotFilmek;
             datagrid.Items.Refresh();
         }
+
+        private void hozzaadas(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFilmCim.Text) ||
+                string.IsNullOrWhiteSpace(txtIdopont.Text) ||
+                string.IsNullOrWhiteSpace(txtTerem.Text) ||
+                string.IsNullOrWhiteSpace(txtSzabadHely.Text))
+            {
+                MessageBox.Show("Minden mezőt ki kell tölteni!");
+                return;
+            }
+
+            if (!int.TryParse(txtSzabadHely.Text, out int szabad))
+            {
+                MessageBox.Show("A szabad helyek szám legyen!");
+                return;
+            }
+
+            if (!DateTime.TryParse(txtIdopont.Text, out DateTime idopont))
+            {
+                MessageBox.Show("Az időpont nem megfelelő formátumú.");
+                return;
+            }
+
+            var uj = new Mozi(txtFilmCim.Text, idopont, txtTerem.Text, szabad, chk3D.IsChecked == true);
+            MoziFilmek.Add(uj);
+
+
+            datagrid.ItemsSource = null;
+            datagrid.ItemsSource = MoziFilmek;
+
+            UritMezok();
+        }
     }
 }
