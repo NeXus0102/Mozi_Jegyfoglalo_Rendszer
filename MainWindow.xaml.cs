@@ -1,0 +1,67 @@
+﻿using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace mozijegyfoglalo
+{
+    public class Mozi
+    {
+        public string cim {  get; set; }
+        public DateTime idopont { get; set; }
+        public string terem { get; set; }
+        public int szabadhelyek { get; set; }
+        public bool _3D { get; set; }
+
+        public Mozi(string cim, DateTime idopont, string terem, int szabadhelyek, bool _3D)
+        {
+            this.cim = cim;
+            this.idopont = idopont;
+            this.terem = terem;
+            this.szabadhelyek = szabadhelyek;
+            this._3D = _3D;
+        }
+    }
+
+    public partial class MainWindow : Window
+    {
+        public List<Mozi> MoziFilmek = new List<Mozi>();
+        public MainWindow()
+        {
+            InitializeComponent();
+            MoziFilmek.Add(
+                new Mozi("Gyűrűk Ura", new DateTime(2025, 12, 15, 19, 30, 0), "1-es terem", 12, true));
+            MoziFilmek.Add(
+                new Mozi("Venom", new DateTime(2025, 12, 15, 20, 25, 0), "2-es terem", 10, true));
+            MoziFilmek.Add(
+                new Mozi("Up", new DateTime(2025, 12, 15, 14, 0, 0), "4-es terem", 20, true));
+            MoziFilmek.Add(
+                new Mozi("Step Up", new DateTime(2025, 12, 15, 19, 50, 0), "3-es terem", 8, true));
+            MoziFilmek.Add(
+                new Mozi("FNAF 2", new DateTime(2025, 12, 16, 10, 50, 0), "1-es terem", 0, true));
+            MoziFilmek.Add(
+                new Mozi("IT", new DateTime(2025, 12, 15, 23, 0, 0), "2-es terem", 1, true));
+            datagrid.ItemsSource = MoziFilmek;
+        }
+
+        private void adatokbetoltese(object sender, RoutedEventArgs e)
+        {
+            datagrid.ItemsSource = MoziFilmek;
+        }
+
+        private void foglalas(object sender, RoutedEventArgs e)
+        {
+            if(datagrid.SelectedItem is Mozi)
+            {
+                ((Mozi)datagrid.SelectedItem).szabadhelyek = ((Mozi)datagrid.SelectedItem).szabadhelyek - 1;
+                datagrid.Items.Refresh();
+            }
+        }
+    }
+}
