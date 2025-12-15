@@ -158,5 +158,45 @@ namespace mozijegyfoglalo
 
             UritMezok();
         }
+
+
+        private void kereses(object sender, RoutedEventArgs e)
+        {
+            string cim = txtFilmCim.Text;
+            if (string.IsNullOrWhiteSpace(cim))
+            {
+                MessageBox.Show("Írd be a keresett film címét!");
+                return;
+            }
+
+            var talalat = MoziFilmek
+                .FirstOrDefault(m => string.Equals(m.cim, cim, StringComparison.CurrentCultureIgnoreCase));
+
+            if (talalat == null)
+            {
+                MessageBox.Show("Nincs ilyen film az előadások között.");
+                return;
+            }
+
+
+            datagrid.ItemsSource = new List<Mozi> { talalat };
+            datagrid.Items.Refresh();
+
+
+            txtFilmCim.Text = talalat.cim;
+            txtIdopont.Text = talalat.idopont.ToString("yyyy.MM.dd HH:mm");
+            txtTerem.Text = talalat.terem;
+            txtSzabadHely.Text = talalat.szabadhelyek.ToString();
+            chk3D.IsChecked = talalat._3D;
+        }
+
+        private void UritMezok()
+        {
+            txtFilmCim.Clear();
+            txtIdopont.Clear();
+            txtTerem.Clear();
+            txtSzabadHely.Clear();
+            chk3D.IsChecked = false;
+        }
     }
 }
