@@ -112,5 +112,18 @@ namespace mozijegyfoglalo
             datagrid.ItemsSource = MoziFilmek;
             datagrid.Items.Refresh();
         }
+
+        private void csak3d(object sender, RoutedEventArgs e)
+        {
+            List<Mozi> harminddotFilmek = new List<Mozi>();
+            foreach (var mozi in MoziFilmek)
+            {
+                if (mozi._3D == true)
+                    harminddotFilmek.Add(mozi);
+            }
+
+            datagrid.ItemsSource = harminddotFilmek;
+            datagrid.Items.Refresh();
+        }
     }
 }
