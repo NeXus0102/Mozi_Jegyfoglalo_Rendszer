@@ -87,5 +87,30 @@ namespace mozijegyfoglalo
             var legnepszerubbFilmek = MoziFilmek.Where(m => m.szabadhelyek == 0).ToList();
             datagrid.ItemsSource = legnepszerubbFilmek;
         }
+
+        private void atlagosszabadhely(object sender, RoutedEventArgs e)
+        {
+            if (MoziFilmek.Count == 0)
+            {
+                MessageBox.Show("Nincs adat a listában!");
+                return;
+            }
+
+            double osszesSzabadHely = 0;
+            foreach (var mozi in MoziFilmek)
+            {
+                osszesSzabadHely += mozi.szabadhelyek;
+            }
+
+            double atlag = osszesSzabadHely / MoziFilmek.Count;
+
+            MessageBox.Show($"Átlagos szabad helyek száma: {atlag:F1} hely",
+                            "Átlagos szabad helyek",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+            datagrid.ItemsSource = MoziFilmek;
+            datagrid.Items.Refresh();
+        }
     }
 }
